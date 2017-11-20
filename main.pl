@@ -44,7 +44,7 @@ porcentagemGeral([_|T],G,Y,D):- porcentagemGeral(T,G,Y,D).
 
 
 perguntar([]).
-perguntar([H|T]) :- perguntas(H,Q,S), new(Di,dialog('Diagnóstico médico')),
+perguntar([H|T]) :- perguntas(H,Q,S), new(Di,dialog('Diagnostico medico')),
 				     new(L2,label(texto,'Responda a seguinte pergunta')),
 				     new(La,label(prob,Q)),
 				     new(B1,button(sim,and(message(Di,return,sim)))),
@@ -61,7 +61,7 @@ perguntar([H|T]) :- perguntas(H,Q,S), new(Di,dialog('Diagnóstico médico')),
 					 ((Answer==sim)-> increment(S), perguntar(T);
 					 perguntar(T)).
 
-inicio :- new(Di,dialog('Diagnóstico médico')),
+inicio :- new(Di,dialog('Diagnostico medico')),
      new(L,label(texto,'Responda a seguinte pergunta:')),
      new(P,label(prob,'Você é mulher?')),
      new(B1,button(sim,and(message(Di,return,sim)))),
