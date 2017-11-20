@@ -3,19 +3,36 @@
 :- use_module(library(pce_style_item)).
 :- encoding(utf8).
 
-busca(t1) :- perguntar([q1,q6,q2,q3,q4,q8,q9,q10,q11,q12,q13,q14,q15,q16]), fail.
-
-busca(t1) :- gerarPorcentagens([t1,t2,t3,t4,t5,t6],PorcentagemTotal,Quantidade),
+busca(t1) :- perguntar([q1,q2,q3,q4,q6,q8,q9,q10,q11,q12,q13,q14,q15,q16]), gerarPorcentagens([t1,t2,t3,t4,t5,t6],PorcentagemTotal,Quantidade),
 			 Quantidade > 0, resultado([t1,t2,t3,t4,t5,t6],PorcentagemTotal).
+
+busca(t1) :- probabilidade(Id,4), doenca(Id,Doenca),
+			 new(Resultado, dialog('Resultado')),
+			 new(L1,label(texto,'Pelos sintomas analisados provavelmente você tenha')),
+			 new(L2,label(texto,Doenca)),
+			 new(L3,label(texto,'Consulte um médico para melhores informações.')),
+			 send(Resultado,display,L1,point(20,20)),
+			 send(Resultado,display,L2,point(330,20)),
+			 send(Resultado,display,L3,point(20,40)),
+			 send(Resultado,open_centered), limpar.
 
 busca(t1) :- new(Resultado,dialog('Resultado')),
 			 new(L,label(texto,'Não foi possivel identificar nenhuma doença com as informações fornecidas!')),
 			 send(Resultado,append(L)),
 			 send(Resultado,open_centered), limpar.
 
-busca(t2) :- perguntar([q5,q7,q2,q3,q4,q8,q9,q10,q11,q12,q13,q14,q15,q16]), fail.
-busca(t2) :- gerarPorcentagens([t2,t3,t4,t5,t6],PorcentagemTotal,Quantidade), 
+busca(t2) :- perguntar([q2,q3,q4,q5,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16]), gerarPorcentagens([t2,t3,t4,t5,t6],PorcentagemTotal,Quantidade), 
 			 Quantidade > 0, resultado([t2,t3,t4,t5,t6],PorcentagemTotal).
+
+busca(t2) :- probabilidade(Id,4), doenca(Id,Doenca),
+			 new(Resultado, dialog('Resultado')),
+			 new(L1,label(texto,'Pelos sintomas analisados provavelmente você tenha')),
+			 new(L2,label(texto,Doenca)),
+			 new(L3,label(texto,'Consulte um médico para melhores informações.')),
+			 send(Resultado,display,L1,point(20,20)),
+			 send(Resultado,display,L2,point(330,20)),
+			 send(Resultado,display,L3,point(20,40)),
+			 send(Resultado,open_centered), limpar.
 
 busca(t2) :- new(Resultado,dialog('Resultado')),
 			 new(L,label(texto,'Não foi possivel identificar nenhuma doença com as informações fornecidas!')),
