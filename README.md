@@ -1,2 +1,2 @@
 # ExpertSystem
-	-Sistema especialista para identificação de doenças sexualmente transmissíveis.
+- Sistema especialista para identificação de doenças sexualmente transmissíveis.
