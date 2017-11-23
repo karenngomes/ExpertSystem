@@ -1,14 +1,13 @@
-:- dynamic probabilidade/2.
+:- dynamic sintomas/2.
 :- dynamic porcentagem/2.
 :- encoding(utf8).
 
-probabilidade(t1,0).
-probabilidade(t2,0).
-probabilidade(t3,0).
-probabilidade(t4,0).
-probabilidade(t5,0).
-probabilidade(t6,0).
-
+sintomas(t1,0).
+sintomas(t2,0).
+sintomas(t3,0).
+sintomas(t4,0).
+sintomas(t5,0).
+sintomas(t6,0).
 
 doenca(t1,'Doença Inflamatoria Pélvica (DIP)').
 doenca(t2,'Gonorréia').
@@ -33,13 +32,3 @@ perguntas(q13,'Você apresenta inchaço ou dor na região da virilha?',[t4]). /*
 perguntas(q14,'Tem aparecido feridas indolores?',[t5]). /* Sifilis */
 perguntas(q15,'Tem tido dores musculares?',[t5,t6]). /* Sifilis, Herpes */
 perguntas(q16,'Úlceras na região dos genitais que podem sangrar e causar dor ao urinar?',[t6]).  /* Herpes */
-
-increment([]).							
-increment([H|T]):- probabilidade(H,Quantidade), Y1 is Quantidade+1, retract(probabilidade(H,_)), asserta(probabilidade(H,Y1)), Y1 \= 4, increment(T).
-
-init([]).
-init([H|T]):- asserta(probabilidade(H,0)), init(T).
-
-gerarPorcentagens([],0,0).
-gerarPorcentagens([H|T],PorcentagemTotal,QtdDoencas):- probabilidade(H,Y), P is Y/4, P > 0, asserta(porcentagem(H,P)), gerarPorcentagens(T,X1,Q1), PorcentagemTotal is X1+P, QtdDoencas is Q1+1.
-gerarPorcentagens([_|T],X,Q):- gerarPorcentagens(T,X,Q).
