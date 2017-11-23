@@ -32,13 +32,3 @@ perguntas(q13,'Você apresenta inchaço ou dor na região da virilha?',[t4]). /*
 perguntas(q14,'Tem aparecido feridas indolores?',[t5]). /* Sifilis */
 perguntas(q15,'Tem tido dores musculares?',[t5,t6]). /* Sifilis, Herpes */
 perguntas(q16,'Úlceras na região dos genitais que podem sangrar e causar dor ao urinar?',[t6]).  /* Herpes */
-
-increment([]).
-increment([H|T]):- probabilidade(H,Y), Y1 is Y+1, retract(probabilidade(H,_)), asserta(probabilidade(H,Y1)), increment(T).
-
-init([]).
-init([H|T]):- asserta(probabilidade(H,0)), init(T). 
-
-gerarPorcentagens([],0).
-gerarPorcentagens([H|T],X):- probabilidade(H,Y), P is Y/4, P > 0, asserta(porcentagem(H,P)), gerarPorcentagens(T,X1), X is X1+P.
-gerarPorcentagens([_|T],X):- gerarPorcentagens(T,X).
